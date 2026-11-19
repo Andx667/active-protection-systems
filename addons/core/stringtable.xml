@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="aps">
+    <Package name="core">
+        <Key ID="STR_aps_core_AFGHANIT_L_DisplayName">
+            <English>Afghanit L</English>
+        </Key>
+        <Key ID="STR_aps_core_AFGHANIT_R_DisplayName">
+            <English>Afghanit R</English>
+        </Key>
+        <Key ID="STR_aps_core_DROZD_L_DisplayName">
+            <English>Drozd L</English>
+        </Key>
+        <Key ID="STR_aps_core_DROZD_R_DisplayName">
+            <English>Drozd R</English>
+        </Key>
+        <Key ID="STR_aps_core_Enabled_Description">
+            <English>Allows vehicles with an active protection system to intercept incoming rockets and missiles.</English>
+        </Key>
+        <Key ID="STR_aps_core_Enabled_DisplayName">
+            <English>Enable APS</English>
+        </Key>
+        <Key ID="STR_aps_core_TROPHY_L_DisplayName">
+            <English>Trophy Left</English>
+        </Key>
+        <Key ID="STR_aps_core_TROPHY_R_DisplayName">
+            <English>Trophy Right</English>
+        </Key>
+    </Package>
+</Project>

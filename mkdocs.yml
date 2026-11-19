@@ -1,10 +1,10 @@
 # Read by Zensical (https://zensical.org), which builds the docs. MkDocs reads it as well.
-site_name: MOD_TITLE Documentation
-site_description: Documentation for the MOD_TITLE mod for Arma 3
-site_url: https://andx667.github.io/MOD_REPO/
+site_name: Active Protection Systems Documentation
+site_description: Documentation for the Active Protection Systems mod for Arma 3
+site_url: https://andx667.github.io/active-protection-systems/
 
-repo_url: https://github.com/Andx667/MOD_REPO
-repo_name: Andx667/MOD_REPO
+repo_url: https://github.com/Andx667/active-protection-systems
+repo_name: Andx667/active-protection-systems
 edit_uri: edit/main/docs/
 
 theme:
@@ -75,6 +75,6 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
 
-# TEMPLATE: add one page per addon or feature
 nav:
   - Home: index.md
+  - Mission Makers & Modders: scripting.md

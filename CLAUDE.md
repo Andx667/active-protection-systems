@@ -1,11 +1,10 @@
-# MOD_TITLE (MOD_REPO)
+# Active Protection Systems (active-protection-systems)
 
 Arma 3 mod built on CBA and ACE, packaged with HEMTT. It runs inside large modsets next to other mods and must load cleanly beside them; other mods and missions should be able to build on it.
 
-<!-- Fill in per repo: prefix, docs location, required mods. Delete sections that don't apply. -->
-- **Prefix**: `MOD_PREFIX` (globals `MOD_PREFIX_<component>_*`, classnames `MOD_PREFIX_*`)
-- **Docs**: `docs/` (MkDocs, published to <https://andx667.github.io/MOD_REPO/>)
-- **Hard dependencies**: CBA_A3 <!-- adjust -->
+- **Prefix**: `aps` (globals `aps_<component>_*`, classnames `aps_*`)
+- **Docs**: `docs/` (MkDocs, published to <https://andx667.github.io/active-protection-systems/>)
+- **Hard dependencies**: CBA_A3, ACE3
 
 ## Guiding principles
 

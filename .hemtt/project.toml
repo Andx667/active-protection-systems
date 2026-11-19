@@ -1,6 +1,6 @@
-name = "MOD_TITLE"
+name = "Active Protection Systems"
 author = "Andx"
-prefix = "MOD_PREFIX"
+prefix = "aps"
 mainprefix = "z"
 
 [version]

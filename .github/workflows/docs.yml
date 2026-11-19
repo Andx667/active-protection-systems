@@ -23,7 +23,7 @@ jobs:
   build:
     # TEMPLATE: skipped on the template itself and on forks. Needs GitHub Pages enabled
     # with "GitHub Actions" as source, see SETUP.md.
-    if: github.repository == 'Andx667/MOD_REPO'
+    if: github.repository == 'Andx667/active-protection-systems'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the source code
