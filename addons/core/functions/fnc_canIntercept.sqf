@@ -7,7 +7,7 @@
  *
  * Arguments:
  * 0: Vehicle mounting the APS module <OBJECT>
- * 1: APS module data: [name, position, turret ([] = hull), direction, traverseLim, elevateLim, range, ammoCount, pk, reloadTime, triggersAmmo, lastFiredTime] <ARRAY>
+ * 1: APS module data: [name, position, turret ([] = hull), direction, traverseLim, elevateLim, range, magazine, pk, reloadTime, triggersAmmo, lastFiredTime] <ARRAY>
  * 2: Incoming projectile <OBJECT>
  *
  * Return Value:
@@ -28,7 +28,7 @@ _aps params [
     "_traverseLim",
     "_elevateLim",
     "_range",
-    "_ammoCount",
+    "_magazine",
     "_pk",
     "_reloadTime",
     "_triggersAmmo",
@@ -48,7 +48,7 @@ private _reject = {
 };
 
 // out of ammo
-if (_ammoCount <= 0) exitWith { "out of ammo" call _reject };
+if (_vehicle magazineTurretAmmo [_magazine, MAGAZINE_TURRET] <= 0) exitWith { "out of ammo" call _reject };
 
 // out of range
 if (_apsPosition distance _projectilePosition > _range) exitWith { "out of range" call _reject };
