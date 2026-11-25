@@ -9,7 +9,15 @@ missionNamespace setVariable ["aps_core_debug", true, true];
     private _vehicle = createVehicle [_type, [4000 + _offset, 4150, 0], [], 0, "NONE"];
     _vehicle setDir 180;
 
+    // the APS only logs rockets and missiles; log every shot of the tank so return fire shows in the RPT
+    _vehicle addEventHandler ["Fired", {
+        params ["_vehicle", "_weapon", "", "", "_ammo", "", "", "_gunner"];
+        diag_log format ["[APS test] %1 fired %2 (%3) by %4", typeOf _vehicle, _weapon, _ammo, typeOf _gunner];
+    }];
+
+    // BLUFOR and OPFOR tanks stand side by side: hold fire, or they fight and blow up the ammo truck
     private _group = createVehicleCrew _vehicle;
+    _group setCombatMode "BLUE";
     {
         _x disableAI "MOVE";
     } forEach units _group;
@@ -26,3 +34,8 @@ missionNamespace setVariable ["aps_core_debug", true, true];
 // ACE rearm source for refilling spent APS shots, east of the tanks and out of the firing lines
 private _ammoTruck = createVehicle ["B_Truck_01_ammo_F", [4160, 4130, 0], [], 0, "NONE"];
 _ammoTruck setDir 270;
+
+addMissionEventHandler ["EntityKilled", {
+    params ["_unit", "_killer", "_instigator"];
+    diag_log format ["[APS test] killed %1 by %2 (instigator %3)", typeOf _unit, typeOf _killer, typeOf _instigator];
+}];
