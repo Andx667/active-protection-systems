@@ -17,4 +17,5 @@ include = [
     "meta.cpp",
     "LICENSE",
     "README.md",
+    "authors.txt",
 ]

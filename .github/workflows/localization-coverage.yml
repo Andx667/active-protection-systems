@@ -1,0 +1,15 @@
+name: Localization coverage
+
+on:
+  push:
+    branches: [main]
+    paths: ["**/stringtable.xml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  coverage:
+    uses: Andx667/hemtt-localization-issue/.github/workflows/localization-coverage.yml@main

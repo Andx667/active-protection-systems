@@ -14,7 +14,7 @@ import xml.etree.ElementTree as ET
 #   - no Original translation.
 #   - duplicated entries and languages.
 #
-# TEMPLATE NOTE: Package name attributes are expected to be lowercase,
+# Note: Package name attributes are expected to be lowercase,
 # matching the addon folder name and the lowercase `#define COMPONENT`
 # macro that CBA's LSTRING/CSTRING family compose their runtime string
 # keys from (e.g. LLSTRING(...) in an addon with `#define COMPONENT foo`

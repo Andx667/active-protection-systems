@@ -9,7 +9,6 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
-  # TEMPLATE: "classic" keeps the Material look, Zensical's default is a newer one.
   variant: classic
   language: en
   # TEMPLATE: once img/icon.png exists, copy it to docs/icon.png and add
