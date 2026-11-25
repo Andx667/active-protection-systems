@@ -2,8 +2,8 @@
 
 /*
  * Author: ITC Addons Team
- * Handles the moduleFired event on the machine that owns the vehicle: decrements the APS module's
- * remaining ammo, stores when it fired, and publishes the module state to all machines. Doing this on
+ * Handles the moduleFired event on the machine that owns the vehicle: takes a shot from the APS module's
+ * magazine (the driver turret it is in is local here), stores when it fired, and publishes the module state to all machines. Doing this on
  * the vehicle's owner means concurrent interceptions from different shooters do not overwrite each other.
  *
  * Arguments:
@@ -28,7 +28,9 @@ private _apsModules = _vehicle getVariable [QGVAR(modules), []];
 if (_index >= count _apsModules) exitWith {};
 
 private _module = +(_apsModules select _index);
-_module set [MODULE_AMMO, (_module select MODULE_AMMO) - 1];
+private _magazine = _module select MODULE_MAGAZINE;
+private _ammo = _vehicle magazineTurretAmmo [_magazine, MAGAZINE_TURRET];
+_vehicle setMagazineTurretAmmo [_magazine, (_ammo - 1) max 0, MAGAZINE_TURRET];
 _module set [MODULE_LAST_FIRED, _firedTime];
 _apsModules set [_index, _module];
 

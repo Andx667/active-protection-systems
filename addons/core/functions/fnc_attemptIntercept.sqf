@@ -34,10 +34,9 @@ private _apsModules = _vehicle getVariable [QGVAR(modules), []];
         private _pk = _module select MODULE_PK;
         private _triggersAmmo = _module select MODULE_TRIGGER;
 
-        // When the vehicle is remote, apply the shot locally right away so the next frame does not fire
-        // the same module again; the owner's event handler applies it to the shared state
+        // When the vehicle is remote, apply the fired time locally right away so the next frame does not fire
+        // the same module again; the owner's event handler takes the shot from the magazine and publishes the state
         if (!local _vehicle) then {
-            _module set [MODULE_AMMO, (_module select MODULE_AMMO) - 1];
             _module set [MODULE_LAST_FIRED, cba_missionTime];
             _apsModules set [_index, _module];
             _vehicle setVariable [QGVAR(modules), _apsModules];

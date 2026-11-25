@@ -26,7 +26,7 @@ The coverage, range and number of shots follow public information on the real sy
 - The first module that can engage fires. On a kill the round is detonated short of the vehicle; on a miss it flies on, and the next module (or the next check) can try again. The shot of a module that misses stops at the round, it does not fly on towards the shooter.
 - The modules are mounted on the turret, so their arcs turn with it.
 - Shells, bullets and grenades are not intercepted, only rockets and missiles.
-- Spent shots are **not** refilled by rearming. A module's shots are back only when the vehicle respawns or is created again.
+- Each module has its own magazine, for example **Trophy Left**. Rearming refills it like any other vehicle magazine: with ACE rearm from an ammo truck or ammo crate (it shows up in the rearm menu), and with Zeus or script rearming.
 
 ## Settings
 

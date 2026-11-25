@@ -60,7 +60,7 @@ private _modules = ("true" configClasses _typeConfig) apply {[
     [_x, "traverse", 0] call _fnc_value,
     [_x, "elevate", 0] call _fnc_value,
     [_x, "range", 0] call _fnc_value,
-    [_x, "munitions", 0] call _fnc_value,
+    [_x, "magazine", ""] call _fnc_value,
     [_x, "pk", 0] call _fnc_value,
     [_x, "reloadTime", 0] call _fnc_value,
     ([_x, "trigger", 1] call _fnc_value) == 1,
@@ -68,5 +68,13 @@ private _modules = ("true" configClasses _typeConfig) apply {[
 ]};
 
 if (_modules isEqualTo []) exitWith {};
+
+private _vehicleMagazines = getArray (_vehicleConfig >> "magazines");
+{
+    private _magazine = _x select MODULE_MAGAZINE;
+    if !(_magazine in _vehicleMagazines) then {
+        WARNING_3("%1: %2 cannot fire, magazines[] has no %3",typeOf _vehicle,_x select MODULE_NAME,_magazine);
+    };
+} forEach _modules;
 
 _vehicle setVariable [QGVAR(modules), _modules, true];

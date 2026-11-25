@@ -2,7 +2,7 @@
 
 ## Fitting an APS to a vehicle
 
-One config line gives a vehicle an APS: `aps_type`, the name of an APS type. The mod picks up every vehicle with that entry, no event handler needed.
+Two config lines give a vehicle an APS: `aps_type`, the name of an APS type, and the type's magazines, one per module, which hold its shots and let rearming refill them. The mod picks up every vehicle with an `aps_type`, no event handler needed.
 
 ```cpp
 class CfgPatches {
@@ -16,15 +16,18 @@ class CfgVehicles {
     class MyTank_base;
     class MyTank: MyTank_base {
         aps_type = "trophy";
+        magazines[] += {"aps_core_trophy_l", "aps_core_trophy_r"};
     };
 };
 ```
 
-| `aps_type` | Modules | Arc per module | Range | Shots per module | Time between shots | Kill chance |
+Use `+=` so the vehicle keeps the magazines it already has. A module whose magazine is missing never fires; the server logs a warning (`[APS] (core) WARNING:`) for it.
+
+| `aps_type` | Modules and magazines | Arc per module | Range | Shots per module | Time between shots | Kill chance |
 | --- | --- | --- | --- | --- | --- | --- |
-| `"trophy"` | `TROPHY_L`, `TROPHY_R` | 186°, centred on its side | 15 m | 2 | 3 s | 80 % |
-| `"drozd"` | `DROZD_L`, `DROZD_R` | 40°, centred 20° left or right of the front | 10 m | 4 | 0.5 s | 30 % |
-| `"afghanit"` | `AFGHANIT_L`, `AFGHANIT_R` | 60°, centred 30° left or right of the front | 30 m | 5 | 0.1 s | 80 % |
+| `"trophy"` | `TROPHY_L`, `TROPHY_R`: `aps_core_trophy_l`, `aps_core_trophy_r` | 186°, centred on its side | 15 m | 2 | 3 s | 80 % |
+| `"drozd"` | `DROZD_L`, `DROZD_R`: `aps_core_drozd_l`, `aps_core_drozd_r` | 40°, centred 20° left or right of the front | 10 m | 4 | 0.5 s | 30 % |
+| `"afghanit"` | `AFGHANIT_L`, `AFGHANIT_R`: `aps_core_afghanit_l`, `aps_core_afghanit_r` | 60°, centred 30° left or right of the front | 30 m | 5 | 0.1 s | 80 % |
 
 Without further config, the modules turn with the main turret (turret `[0]`; on vehicles without one they are fixed to the hull) and sit on the vehicle's centre line in its upper quarter. That is close enough to work on any vehicle: the range is measured from there, and the line of sight check ignores the vehicle itself.
 
@@ -35,13 +38,13 @@ An `aps` class with a subclass per module overrides any of its properties. Leave
 ```cpp
 class MyTank: MyTank_base {
     aps_type = "trophy";
+    magazines[] += {"aps_core_trophy_l", "aps_core_trophy_r"};
     class aps {
         class TROPHY_L {
             position[] = {-1, 0, 1.5};  // model coordinates of the launcher
         };
         class TROPHY_R {
             position[] = {1, 0, 1.5};
-            munitions = 6;
         };
     };
 };
@@ -56,16 +59,24 @@ class MyTank: MyTank_base {
 | `traverse` | Covers this many degrees to each side of its facing | from the type |
 | `elevate` | And this many degrees up and down | from the type |
 | `range` | m, engages when the projectile is this close | from the type |
-| `munitions` | Shots | from the type |
+| `magazine` | Magazine class holding the module's shots (its `count`); must be in the vehicle's `magazines[]` | from the type |
 | `pk` | Kill chance per shot, 0 to 1 | from the type |
 | `reloadTime` | s between shots | from the type |
 | `trigger` | 1 = detonate the round, 0 = replace it with a penetrator | from the type |
 
 ### Adding an APS type
 
-Types are classes in `aps_types`, one subclass per launcher module with the properties above. A compat mod can add its own:
+Types are classes in `aps_types`, one subclass per launcher module with the properties above, each with its own magazine. A compat mod can add its own:
 
 ```cpp
+class CfgMagazines {
+    class aps_core_trophy_l;
+    class my_aps_front: aps_core_trophy_l {
+        displayName = "My APS Front";  // shown in the ACE rearm menu
+        count = 4;                     // shots
+    };
+};
+
 class aps_types {
     class my_aps {
         class MY_APS_FRONT {
@@ -74,7 +85,7 @@ class aps_types {
             traverse = 60;
             elevate = 20;
             range = 20;
-            munitions = 4;
+            magazine = "my_aps_front";
             pk = 0.6;
             reloadTime = 0.3;
             trigger = 1;
