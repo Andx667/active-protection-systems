@@ -26,7 +26,7 @@ class CfgVehicles {
 | `"drozd"` | `DROZD_L`, `DROZD_R` | 40°, centred 20° left or right of the front | 10 m | 4 | 0.5 s | 30 % |
 | `"afghanit"` | `AFGHANIT_L`, `AFGHANIT_R` | 60°, centred 30° left or right of the front | 30 m | 5 | 0.1 s | 80 % |
 
-Without further config, the modules turn with the main turret (turret `[0]`; on vehicles without one they are fixed to the hull) and sit on the vehicle's centre line in its upper quarter. That is close enough to work on any vehicle: the range is measured from there, and the line of sight check ignores the vehicle itself.
+Without further config, the modules turn with the main turret (turret `[0]`; on vehicles without one they are fixed to the hull) and sit on the vehicle's centre line in its upper quarter. That is close enough to work on any vehicle: the range is measured from there, and the line of sight check ignores the vehicle itself. The arc is measured from the vehicle's centre line, so the arcs of a left and a right launcher meet without a gap whatever their positions.
 
 ### Fine tuning
 
