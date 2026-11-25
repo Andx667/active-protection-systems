@@ -20,11 +20,11 @@ class CfgVehicles {
 };
 ```
 
-| `aps_type` | Modules | Arc per module | Range | Shots per module | Kill chance |
-| --- | --- | --- | --- | --- | --- |
-| `"trophy"` | `TROPHY_L`, `TROPHY_R` | 186°, centred on its side | 15 m | 10 | 80 % |
-| `"drozd"` | `DROZD_L`, `DROZD_R` | 90°, centred 40° left or right of the front | 15 m | 4 | 30 % |
-| `"afghanit"` | `AFGHANIT_L`, `AFGHANIT_R` | 110°, centred 50° left or right of the front | 30 m | 5 | 80 % |
+| `aps_type` | Modules | Arc per module | Range | Shots per module | Time between shots | Kill chance |
+| --- | --- | --- | --- | --- | --- | --- |
+| `"trophy"` | `TROPHY_L`, `TROPHY_R` | 186°, centred on its side | 15 m | 2 | 3 s | 80 % |
+| `"drozd"` | `DROZD_L`, `DROZD_R` | 40°, centred 20° left or right of the front | 10 m | 4 | 0.5 s | 30 % |
+| `"afghanit"` | `AFGHANIT_L`, `AFGHANIT_R` | 60°, centred 30° left or right of the front | 30 m | 5 | 0.1 s | 80 % |
 
 Without further config, the modules turn with the main turret (turret `[0]`; on vehicles without one they are fixed to the hull) and sit on the vehicle's centre line in its upper quarter. That is close enough to work on any vehicle: the range is measured from there, and the line of sight check ignores the vehicle itself.
 
