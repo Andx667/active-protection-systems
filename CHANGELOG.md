@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-25
+
 ### Added
 
 - Core - Active protection systems, moved out of ITC Land Systems Redux (`itc_land_aps`): Trophy on the M2A1 Slammer, Drozd on the T-100 Varsuk and Afghanit on the T-140 Angara intercept incoming rockets and missiles. The names changed from `itc_land_aps*` to `aps*`, see the migration table in the docs, by Andx

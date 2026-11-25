@@ -4,9 +4,6 @@
 
 The APS was part of [ITC Land Systems Redux](https://github.com/Andx667/ITC_Land_Systems) and is now its own mod. The project is entirely open-source and any contributions are welcome.
 
-!!! warning "Not released"
-    This repo keeps the APS code that was removed from ITC Land Systems Redux. There is no Workshop item or release yet.
-
 !!! info "Requirements"
     Active Protection Systems requires [CBA_A3](https://github.com/CBATeam/CBA_A3/releases/latest) and [ACE3](https://github.com/acemod/ACE3/releases/latest).
 
