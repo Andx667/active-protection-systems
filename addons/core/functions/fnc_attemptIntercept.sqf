@@ -3,9 +3,10 @@
 /*
  * Author: Yax
  * Attempts to intercept an incoming projectile with each of a vehicle's APS (Active Protection System) modules that report being able to
- * intercept it. On a successful chance roll (pk), destroys or replaces the incoming projectile; on a failed roll, spawns a visual
- * countermeasure round. Runs on the machine that owns the projectile. The module's ammo count and last fired time are updated
- * optimistically on this machine and sent to the vehicle's owner (onModuleFired), which applies and publishes the authoritative state.
+ * intercept it. On a successful chance roll (pk), destroys or replaces the incoming projectile; on a failed roll, fires a round from
+ * the module at the projectile that is removed once it reaches it. Runs on the machine that owns the projectile. The module's ammo
+ * count and last fired time are updated optimistically on this machine and sent to the vehicle's owner (onModuleFired), which
+ * applies and publishes the authoritative state.
  *
  * Arguments:
  * 0: Incoming projectile <OBJECT>
@@ -63,9 +64,15 @@ private _apsModules = _vehicle getVariable [QGVAR(modules), []];
             };
             _killed = true;
         } else {
-            private _ammo = "B_127x108_APDS" createVehicle [0,0,100];
-            _ammo setVelocity (velocity _projectile vectorMultiply -1);
-            _ammo setPosASL (getPosASL _projectile);
+            // the round is removed once it reaches the projectile, so a miss cannot fly on and hit whatever is behind it;
+            // it starts 1 m out so it does not hit its own vehicle
+            private _to = getPosASL _projectile;
+            private _from = _vehicle modelToWorldWorld (_module select MODULE_POSITION);
+            _from = _from vectorAdd (_from vectorFromTo _to);
+            private _round = "B_127x108_APDS" createVehicle [0,0,100];
+            _round setPosASL _from;
+            _round setVelocity ((_from vectorFromTo _to) vectorMultiply MISS_ROUND_SPEED);
+            [{deleteVehicle _this}, _round, (_from vectorDistance _to) / MISS_ROUND_SPEED] call CBA_fnc_waitAndExecute;
         };
     };
 } forEach _apsModules;

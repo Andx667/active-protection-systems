@@ -21,7 +21,7 @@ The APS was part of [ITC Land Systems Redux](https://github.com/Andx667/ITC_Land
 ## How it works
 
 - Every rocket and missile in flight is watched. When it is heading for a vehicle with an APS, each module checks whether the round is within its range and arc, it has line of sight to it, it has shots left and it is not reloading.
-- The first module that can engage fires. On a kill the round is detonated short of the vehicle; on a miss it flies on, and the next module (or the next check) can try again.
+- The first module that can engage fires. On a kill the round is detonated short of the vehicle; on a miss it flies on, and the next module (or the next check) can try again. The shot of a module that misses stops at the round, it does not fly on towards the shooter.
 - The modules are mounted on the turret, so their arcs turn with it.
 - Shells, bullets and grenades are not intercepted, only rockets and missiles.
 - Spent shots are **not** refilled by rearming. A module's shots are back only when the vehicle respawns or is created again.
