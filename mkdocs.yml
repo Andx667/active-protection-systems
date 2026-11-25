@@ -9,11 +9,11 @@ edit_uri: edit/main/docs/
 
 theme:
   name: material
+  custom_dir: overrides
   variant: classic
   language: en
-  # TEMPLATE: once img/icon.png exists, copy it to docs/icon.png and add
-  #   logo: icon.png
-  #   favicon: icon.png
+  logo: assets/icon.png
+  favicon: assets/favicon.svg
   icon:
     repo: fontawesome/brands/github
   palette:

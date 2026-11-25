@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+<title>active-protection-systems</title>
+<g transform="translate(16.00 16.00) scale(2.40000)" color="#FFFFFF" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><circle cx="100" cy="100" r="92"/>
+<g transform="translate(-5 0)">
+<path d="M46 132 A54 54 0 0 1 154 132" stroke-dasharray="10 11"/>
+<path d="M62 128 H138 A8 8 0 0 1 138 144 H62 A8 8 0 0 1 62 128 Z"/>
+<path d="M56 128 L66 116 H136 L144 128"/>
+<path d="M78 116 L84 102 H112 L118 116 M114 108 H136"/>
+<path d="M164 52 L156 60"/>
+<circle cx="146" cy="70" r="3.5" fill="currentColor" stroke="none"/>
+<path d="M146 62 V54 M146 78 V86 M138 70 H130 M154 70 H162"/>
+</g>
+</g>
+</svg>

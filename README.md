@@ -1,7 +1,7 @@
 # Active Protection Systems
 
 <p align="center">
-    <img src="https://github.com/Andx667/active-protection-systems/blob/main/img/icon.png" alt="Active Protection Systems Logo">
+    <img src="https://github.com/Andx667/active-protection-systems/blob/main/img/logo.png" alt="Active Protection Systems Logo">
 </p>
 
 <p align="center">
