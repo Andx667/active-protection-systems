@@ -12,11 +12,13 @@ The APS was part of [ITC Land Systems Redux](https://github.com/Andx667/ITC_Land
 
 ## Vehicles
 
-| Tank | Classname | System | Arc per module | Range | Shots per module | Kill chance |
-| --- | --- | --- | --- | --- | --- | --- |
-| **M2A1 Slammer** | `B_MBT_01_cannon_F` | **Trophy** left and right | 186°, centred on its side (together all round) | 15 m | 10 | 80 % |
-| **T-100 Varsuk** | `O_MBT_02_cannon_F` | **Drozd** left and right | 90°, centred 40° left or right of the front | 15 m | 4 | 30 % |
-| **T-140 Angara** (all variants) | `MBT_04_base_F` and every class derived from it | **Afghanit** left and right | 110°, centred 50° left or right of the front | 30 m | 5 | 80 % |
+| Tank | Classname | System | Arc per module | Range | Shots per module | Time between shots | Kill chance |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| **M2A1 Slammer** | `B_MBT_01_cannon_F` | **Trophy** left and right | 186°, centred on its side (together all round) | 15 m | 2 | 3 s | 80 % |
+| **T-100 Varsuk** | `O_MBT_02_cannon_F` | **Drozd** left and right | 40°, centred 20° left or right of the front (together 80° to the front) | 7 m | 4 | 0.5 s | 30 % |
+| **T-140 Angara** (all variants) | `MBT_04_base_F` and every class derived from it | **Afghanit** left and right | 60°, centred 30° left or right of the front (together 120° to the front) | 30 m | 5 | 0.1 s | 80 % |
+
+The coverage, range and number of shots follow public information on the real systems: Trophy has one ready round per launcher and a slow reload, Drozd covers 60 to 80° to the front and intercepts at about 7 m, Afghanit is reported with five tubes per side covering 120° to the front. Little is published on the real kill chances or Trophy's reload time; those values are balance choices.
 
 ## How it works
 

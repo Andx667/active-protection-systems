@@ -1,5 +1,6 @@
 // APS types a vehicle selects with aps_type. One subclass per launcher module; other mods can add types.
 // direction is relative to the turret (or hull), so a type fits any vehicle.
+// Coverage, range and shots follow public sources (docs/index.md); pk and Trophy's reload time are balance choices.
 class DOUBLES(PREFIX,types) {
     class trophy {
         class TROPHY_L {
@@ -8,9 +9,9 @@ class DOUBLES(PREFIX,types) {
             traverse = 93;
             elevate = 40;
             range = 15;
-            munitions = 10;
+            munitions = 2;
             pk = 0.8;
-            reloadTime = 0.1;
+            reloadTime = 3;
             trigger = 1;
         };
         class TROPHY_R: TROPHY_L {
@@ -22,10 +23,10 @@ class DOUBLES(PREFIX,types) {
     class drozd {
         class DROZD_L {
             displayName = CSTRING(DROZD_L_DisplayName);
-            direction = -40;
-            traverse = 45;
+            direction = -20;
+            traverse = 20;
             elevate = 15;
-            range = 15;
+            range = 7;
             munitions = 4;
             pk = 0.3;
             reloadTime = 0.5;
@@ -33,15 +34,15 @@ class DOUBLES(PREFIX,types) {
         };
         class DROZD_R: DROZD_L {
             displayName = CSTRING(DROZD_R_DisplayName);
-            direction = 40;
+            direction = 20;
         };
     };
 
     class afghanit {
         class AFGHANIT_L {
             displayName = CSTRING(AFGHANIT_L_DisplayName);
-            direction = -50;
-            traverse = 55;
+            direction = -30;
+            traverse = 30;
             elevate = 10;
             range = 30;
             munitions = 5;
@@ -51,7 +52,7 @@ class DOUBLES(PREFIX,types) {
         };
         class AFGHANIT_R: AFGHANIT_L {
             displayName = CSTRING(AFGHANIT_R_DisplayName);
-            direction = 50;
+            direction = 30;
         };
     };
 };

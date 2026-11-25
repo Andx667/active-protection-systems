@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Core - A vehicle gets an APS from one config line (`aps_type = "trophy";`, `"drozd"` or `"afghanit"`); launcher position and every other module property are optional overrides. Mods can add their own APS types (#12) by Andx
 - Core - "APS enabled" checkbox in the Eden attributes of every vehicle, on by default (#12) by Andx
 
+### Changed
+
+- Core - Trophy, Drozd and Afghanit are closer to the real systems: Trophy has 2 shots per side with 3 s between them (was 10 with 0.1 s), Drozd covers 80° to the front and engages at 7 m (was 170° and 15 m), Afghanit covers 120° to the front (was 210°) (#PR) by Andx
+
 ### Fixed
 
 - Core - A missed intercept no longer sends a live round back along the rocket's path towards the shooter (#10) by Andx
