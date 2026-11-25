@@ -24,32 +24,34 @@
  * Public: No
  */
 
-params [["_unit", objNull, [objNull]], ["_weapon", "", [""]], "", "", ["_ammo", "", [""]], "", ["_projectile", objNull, [objNull]], ["_gunner", objNull, [objNull]]];
+params [["_unit", objNull, [objNull]], "", "", "", ["_ammo", "", [""]], "", ["_projectile", objNull, [objNull]]];
 
 if (!local _unit) exitWith {};
 if (!GVAR(enabled)) exitWith {};
 
-private _simulation = getText (configFile >> "cfgAmmo" >> _ammo >> "simulation");
+// runs for every bullet of every local unit, so the config lookup is cached per ammo class
+private _tracked = GVAR(trackedAmmo) getOrDefaultCall [_ammo, {
+    getText (configFile >> "CfgAmmo" >> _ammo >> "simulation") in ["shotRocket", "shotMissile"]
+}, true];
+if (!_tracked) exitWith {};
 
-if (!(_simulation in ["shotRocket", "shotMissile"])) exitWith {};
-
-if (missionNamespace getVariable [QGVAR(debug), false]) then {
+if (DEBUG_ENABLED) then {
     INFO_3("tracking %1 fired by %2 at %3 m/s",_ammo,typeOf _unit,round vectorMagnitude velocity _projectile);
 };
 
 // every frame: a rocket covers several metres per frame and a module's window is only its range
-[_projectile, {
-    params ["_projectile", "", "_pfhId"];
-    private _begin = getPosASL _projectile;
-    private _end = _begin vectorAdd ((vectorDir _projectile) vectorMultiply 30);
-    private _intersects = lineIntersectsWith  [_begin, _end, objNull, objNull];
-    if (count _intersects > 0) exitWith {
-        { // forEach _intersects
-            private _aps = _x getVariable [QGVAR(modules), nil];
-            // a killed projectile can stay alive for a few frames: stop tracking it so no module fires at it again
-            if (!(isNil "_aps") && {[_projectile, _x] call FUNC(attemptIntercept)}) exitWith {
-                [_pfhId] call CBA_fnc_removePerFrameHandler;
-            };
-        } forEach _intersects;
+[{
+    params ["_projectile", "_pfhId"];
+    if (!alive _projectile) exitWith {
+        [_pfhId] call CBA_fnc_removePerFrameHandler;
     };
-}] call FUNC(addProjectilePFH);
+
+    private _begin = getPosASL _projectile;
+    private _end = _begin vectorAdd (vectorDir _projectile vectorMultiply 30);
+    { // forEach lineIntersectsWith
+        // a killed projectile can stay alive for a few frames: stop tracking it so no module fires at it again
+        if (!isNil {_x getVariable QGVAR(modules)} && {[_projectile, _x] call FUNC(attemptIntercept)}) exitWith {
+            [_pfhId] call CBA_fnc_removePerFrameHandler;
+        };
+    } forEach lineIntersectsWith [_begin, _end];
+}, 0, _projectile] call CBA_fnc_addPerFrameHandler;

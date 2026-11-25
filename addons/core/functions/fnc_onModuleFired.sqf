@@ -28,8 +28,8 @@ private _apsModules = _vehicle getVariable [QGVAR(modules), []];
 if (_index >= count _apsModules) exitWith {};
 
 private _module = +(_apsModules select _index);
-_module set [7, (_module select 7) - 1];
-_module set [11, _firedTime];
+_module set [MODULE_AMMO, (_module select MODULE_AMMO) - 1];
+_module set [MODULE_LAST_FIRED, _firedTime];
 _apsModules set [_index, _module];
 
 _vehicle setVariable [QGVAR(modules), _apsModules, true];

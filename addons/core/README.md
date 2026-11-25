@@ -2,7 +2,7 @@
 
 `aps_core`: the active protection system: module state, projectile tracking and interception, and the APS of the vanilla main battle tanks. User docs: [docs/index.md](../../docs/index.md), [docs/scripting.md](../../docs/scripting.md).
 
-Moved from ITC Land Systems Redux (`itc_land_aps`). `fnc_addProjectilePFH` is a copy of ITC's `itc_land_common_fnc_addProjectilePFH`, the only ITC function the APS used.
+Moved from ITC Land Systems Redux (`itc_land_aps`).
 
 ## Dependencies
 
@@ -26,16 +26,14 @@ CBA settings in `initSettings.inc.sqf`: `aps_core_enabled`.
 
 Internal events this addon handles (raised with `CBA_fnc_*Event`):
 
-- `aps_core_moduleFired` (`functions/fnc_postInit.sqf`)
+- `aps_core_moduleFired` (`XEH_postInit.sqf`)
 
 ## Functions
 
 | Function | Public | What it does |
 | --- | --- | --- |
-| `fnc_addProjectilePFH` |  | Runs code every frame (or every delay seconds) for as long as a projectile is alive. |
 | `fnc_attemptIntercept` |  | Attempts to intercept an incoming projectile with each of a vehicle's APS modules that report being able to intercept it. |
 | `fnc_canIntercept` |  | Checks whether an APS module can intercept an incoming projectile right now: ammo, range, reload, traverse/elevation and line of sight. |
 | `fnc_fired` |  | "Fired" class event handler. |
 | `fnc_onModuleFired` |  | Handles the moduleFired event on the vehicle's owner: decrements the module's ammo and publishes the module state. |
-| `fnc_postInit` |  | Addon postInit entry point. |
 | `fnc_vehicleInit` | Yes | Initializes a vehicle's APS modules from its `aps` config class. |

@@ -30,23 +30,23 @@ private _apsModules = _vehicle getVariable [QGVAR(modules), []];
     if (_canIntercept) then {
         private _index = _forEachIndex;
         private _module = +_x;
-        private _pk = _module select 8;
-        private _triggersAmmo = _module select 10;
+        private _pk = _module select MODULE_PK;
+        private _triggersAmmo = _module select MODULE_TRIGGER;
 
         // When the vehicle is remote, apply the shot locally right away so the next frame does not fire
         // the same module again; the owner's event handler applies it to the shared state
         if (!local _vehicle) then {
-            _module set [7, (_module select 7) - 1];
-            _module set [11, cba_missionTime];
+            _module set [MODULE_AMMO, (_module select MODULE_AMMO) - 1];
+            _module set [MODULE_LAST_FIRED, cba_missionTime];
             _apsModules set [_index, _module];
             _vehicle setVariable [QGVAR(modules), _apsModules];
         };
         [QGVAR(moduleFired), [_vehicle, _index, cba_missionTime], _vehicle] call CBA_fnc_targetEvent;
 
         private _kill = random 1 <= _pk;
-        if (missionNamespace getVariable [QGVAR(debug), false]) then {
+        if (DEBUG_ENABLED) then {
             private _result = ["miss", "kill"] select _kill;
-            INFO_4("%1 %2 fired at %3 m: %4",typeOf _vehicle,_module select 0,round (_projectile distance _vehicle),_result);
+            INFO_4("%1 %2 fired at %3 m: %4",typeOf _vehicle,_module select MODULE_NAME,round (_projectile distance _vehicle),_result);
         };
 
         if (_kill) then {
@@ -63,10 +63,8 @@ private _apsModules = _vehicle getVariable [QGVAR(modules), []];
             };
             _killed = true;
         } else {
-            private _velocity = velocity _projectile;
-            private _inverseMagnitude = -1 * (vectorMagnitude _velocity);
             private _ammo = "B_127x108_APDS" createVehicle [0,0,100];
-            _ammo setVelocity ((vectorNormalized _velocity) vectorMultiply _inverseMagnitude);
+            _ammo setVelocity (velocity _projectile vectorMultiply -1);
             _ammo setPosASL (getPosASL _projectile);
         };
     };
