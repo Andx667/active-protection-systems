@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Core - Trophy, Drozd and Afghanit are closer to the real systems: Trophy has 2 shots per side with 3 s between them (was 10 with 0.1 s), Drozd covers 80° to the front and engages at 7 m (was 170° and 15 m), Afghanit covers 120° to the front (was 210°) (#13) by Andx
+- Core - Trophy, Drozd and Afghanit are closer to the real systems: Trophy has 2 shots per side with 3 s between them (was 10 with 0.1 s), Drozd covers 80° to the front and engages at 10 m (was 170° and 15 m), Afghanit covers 120° to the front (was 210°) (#13) by Andx
 
 ### Fixed
 

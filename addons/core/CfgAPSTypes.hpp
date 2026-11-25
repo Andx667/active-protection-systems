@@ -1,6 +1,7 @@
 // APS types a vehicle selects with aps_type. One subclass per launcher module; other mods can add types.
 // direction is relative to the turret (or hull), so a type fits any vehicle.
-// Coverage, range and shots follow public sources (docs/index.md); pk and Trophy's reload time are balance choices.
+// Coverage, range and shots follow public sources (docs/index.md); pk, Trophy's reload time and Drozd's range
+// (10 m instead of 7 m, so fast rounds are not missed between two frames) are balance choices.
 class DOUBLES(PREFIX,types) {
     class trophy {
         class TROPHY_L {
@@ -26,7 +27,7 @@ class DOUBLES(PREFIX,types) {
             direction = -20;
             traverse = 20;
             elevate = 15;
-            range = 7;
+            range = 10;
             munitions = 4;
             pk = 0.3;
             reloadTime = 0.5;
