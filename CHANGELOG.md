@@ -11,7 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Core - Active protection systems, moved out of ITC Land Systems Redux (`itc_land_aps`): Trophy on the M2A1 Slammer, Drozd on the T-100 Varsuk and Afghanit on the T-140 Angara intercept incoming rockets and missiles. The names changed from `itc_land_aps*` to `aps*`, see the migration table in the docs, by Andx
 - Core - A vehicle gets an APS from two config lines: `aps_type = "trophy";` (or `"drozd"`, `"afghanit"`) and the type's magazines; launcher position and every other module property are optional overrides. Mods can add their own APS types (#12) by Andx
-- Core - APS shots are vehicle magazines, so ACE rearm (and Zeus or script rearming) refills them (#PR) by Andx
+- Core - APS shots are vehicle magazines, so ACE rearm (and Zeus or script rearming) refills them (#16) by Andx
 - Core - "APS enabled" checkbox in the Eden attributes of every vehicle, on by default (#12) by Andx
 
 ### Changed
