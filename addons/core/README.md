@@ -10,13 +10,15 @@ Moved from ITC Land Systems Redux (`itc_land_aps`).
 
 ## How it works
 
-- `fnc_vehicleInit` (vehicle init event handler, server only) reads the vehicle's `aps` config class into the public `aps_core_modules` variable, one array per module.
-- `fnc_fired` (CBA `Fired` class event handler on `All`) follows every locally fired rocket and missile with a per-frame handler that raycasts 30 m ahead each frame; a hit on an object with `aps_core_modules` calls `fnc_attemptIntercept`.
+- `fnc_vehicleInit` (XEH `serverInit` on `AllVehicles`) reads the vehicle's `aps_type`, takes that type's modules from `aps_types`, lets the vehicle's `aps` class override any module property, fills in a default position and turret, and stores the result in the public `aps_core_modules` variable, one array per module (indices: `MODULE_*` in `script_component.hpp`).
+- `fnc_fired` (CBA `Fired` class event handler on `All`) follows every locally fired rocket and missile with a per-frame handler that raycasts 30 m ahead each frame; a hit on an object with `aps_core_modules` whose `aps_core_enabled` object variable (Eden attribute) is not false calls `fnc_attemptIntercept`.
 - Interception runs on the shooter's machine. A module that fires is applied locally right away and sent to the vehicle's owner as `aps_core_moduleFired`; the owner (`fnc_onModuleFired`) applies it to the shared state and publishes it, so several shooters do not overwrite each other.
 
 ## Files
 
-- `CfgVehicles.hpp`: the APS of the Slammer, Varsuk and Angara
+- `CfgAPSTypes.hpp`: the APS types (`aps_types`: trophy, drozd, afghanit)
+- `CfgVehicles.hpp`: the APS of the Slammer, Varsuk and Angara (type plus launcher positions)
+- `Cfg3DEN.hpp`: the "APS enabled" vehicle attribute; its expression runs on the server only, so it sets the variable public
 
 ## Settings
 
@@ -36,4 +38,4 @@ Internal events this addon handles (raised with `CBA_fnc_*Event`):
 | `fnc_canIntercept` |  | Checks whether an APS module can intercept an incoming projectile right now: ammo, range, reload, traverse/elevation and line of sight. |
 | `fnc_fired` |  | "Fired" class event handler. |
 | `fnc_onModuleFired` |  | Handles the moduleFired event on the vehicle's owner: decrements the module's ammo and publishes the module state. |
-| `fnc_vehicleInit` | Yes | Initializes a vehicle's APS modules from its `aps` config class. |
+| `fnc_vehicleInit` |  | Initializes a vehicle's APS modules from its `aps_type` and `aps` config class. |

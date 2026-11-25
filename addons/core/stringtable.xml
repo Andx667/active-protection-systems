@@ -7,6 +7,12 @@
         <Key ID="STR_aps_core_AFGHANIT_R_DisplayName">
             <English>Afghanit R</English>
         </Key>
+        <Key ID="STR_aps_core_Attribute_Enabled_DisplayName">
+            <English>APS enabled</English>
+        </Key>
+        <Key ID="STR_aps_core_Attribute_Enabled_Tooltip">
+            <English>The active protection system of this vehicle intercepts incoming rockets and missiles. Has no effect on vehicles without an APS.</English>
+        </Key>
         <Key ID="STR_aps_core_DROZD_L_DisplayName">
             <English>Drozd L</English>
         </Key>
