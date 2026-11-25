@@ -41,7 +41,7 @@ private _projectilePosition = getPosASL _projectile;
 // logs why the module does not fire when debugging (aps_core_debug), returns false;
 // "out of range" is not logged, it repeats every frame while the projectile closes in
 private _reject = {
-    if (_this != "out of range" && {missionNamespace getVariable [QGVAR(debug), false]}) then {
+    if (_this != "out of range" && {DEBUG_ENABLED}) then {
         INFO_4("%1 %2: no intercept - %3 (projectile %4 m)",typeOf _vehicle,_name,_this,round (_apsPosition distance _projectilePosition));
     };
     false
@@ -71,11 +71,10 @@ if (!isNil "_turret") then {
 private _offset = ((_azimuth - (_mountDirection + _direction)) % 360 + 540) % 360 - 180;
 if (abs _offset >= _traverseLim) exitWith { format ["outside traverse (%1 deg off)", round _offset] call _reject };
 
-if (_elevation < -_elevateLim || _elevation > _elevateLim) exitWith { format ["outside elevation (%1 deg)", round _elevation] call _reject };
+if (abs _elevation > _elevateLim) exitWith { format ["outside elevation (%1 deg)", round _elevation] call _reject };
 
 // los check from aps module
 private _intersects = lineIntersectsWith [_apsPosition, _projectilePosition, _vehicle, _projectile];
 if (count _intersects > 0) exitWith { format ["no line of sight (%1)", _intersects apply {typeOf _x}] call _reject };
-
 
 true

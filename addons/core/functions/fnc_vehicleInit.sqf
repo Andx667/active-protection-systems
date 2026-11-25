@@ -17,35 +17,28 @@
  *
  * Public: Yes
  */
+
 params [["_vehicle", objNull, [objNull]]];
 
 // The init event runs on every machine; only the server sets the state so that joining clients do not reset it
 if (!isServer) exitWith {};
 
-private _config = (configOf _vehicle >> QUOTE(PREFIX));
+// Order must match the MODULE_* indices in script_component.hpp
+private _modules = ("true" configClasses (configOf _vehicle >> QUOTE(PREFIX))) apply {[
+    getText (_x >> "displayName"),
+    (_x >> "position") call BIS_fnc_getCfgData,
+    (_x >> "turret") call BIS_fnc_getCfgData,
+    getNumber (_x >> "direction"),
+    getNumber (_x >> "traverse"),
+    getNumber (_x >> "elevate"),
+    getNumber (_x >> "range"),
+    getNumber (_x >> "munitions"),
+    getNumber (_x >> "pk"),
+    getNumber (_x >> "reloadTime"),
+    getNumber (_x >> "trigger") == 1,
+    0
+]};
 
-if (isClass _config) then {
-    private _apsArray = [];
-    private _apsSystems = "true" configClasses _config;
-    { // forEach _apsSystems
-        private _aps = [
-            getText (_x >> "displayName"),
-            ((_x >> "position") call BIS_fnc_getCfgData),
-            ((_x >> "turret") call BIS_fnc_getCfgData),
-            getNumber (_x >> "direction"),
-            getNumber (_x >> "traverse"),
-            getNumber (_x >> "elevate"),
-            getNumber (_x >> "range"),
-            getNumber (_x >> "munitions"),
-            getNumber (_x >> "pk"),
-            getNumber (_x >> "reloadTime"),
-            (getNumber (_x >> "trigger") == 1),
-            0
-        ];
-        _apsArray pushBack _aps;
-    } forEach _apsSystems;
+if (_modules isEqualTo []) exitWith {};
 
-    if (_apsArray isNotEqualTo []) then {
-        _vehicle setVariable [QGVAR(modules), _apsArray, true];
-    };
-};
+_vehicle setVariable [QGVAR(modules), _modules, true];
