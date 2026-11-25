@@ -7,7 +7,7 @@
  *
  * Arguments:
  * 0: Vehicle mounting the APS module <OBJECT>
- * 1: APS module data: [name, position, turret, direction, traverseLim, elevateLim, range, ammoCount, pk, reloadTime, triggersAmmo, lastFiredTime] <ARRAY>
+ * 1: APS module data: [name, position, turret ([] = hull), direction, traverseLim, elevateLim, range, ammoCount, pk, reloadTime, triggersAmmo, lastFiredTime] <ARRAY>
  * 2: Incoming projectile <OBJECT>
  *
  * Return Value:
@@ -62,7 +62,7 @@ private _vectPolar = _vectToProjectile call CBA_fnc_vect2Polar;
 _vectPolar params ["", "_azimuth", "_elevation"];
 
 private _mountDirection = (getDir _vehicle);
-if (!isNil "_turret") then {
+if (_turret isNotEqualTo []) then {
     private _turretVector = ([_vehicle, _turret] call ace_common_fnc_getTurretDirection) # 1;
     _mountDirection = (_turretVector call CBA_fnc_vect2Polar) # 1;
 };

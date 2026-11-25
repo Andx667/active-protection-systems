@@ -34,4 +34,6 @@ Under **Addon Options → Active Protection Systems** (CBA settings):
 | --- | --- | --- | --- |
 | **Enable APS** | Vehicles with an active protection system intercept incoming rockets and missiles | On | Server-wide |
 
-Fitting an APS to other vehicles is described in [Mission Makers & Modders](scripting.md).
+In the **Eden editor**, every vehicle has an **APS enabled** checkbox under **Active Protection Systems** (on by default) to switch off the APS of that vehicle.
+
+Fitting an APS to other vehicles takes one config line, see [Mission Makers & Modders](scripting.md).

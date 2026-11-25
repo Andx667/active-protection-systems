@@ -50,7 +50,11 @@ if (DEBUG_ENABLED) then {
     private _end = _begin vectorAdd (vectorDir _projectile vectorMultiply 30);
     { // forEach lineIntersectsWith
         // a killed projectile can stay alive for a few frames: stop tracking it so no module fires at it again
-        if (!isNil {_x getVariable QGVAR(modules)} && {[_projectile, _x] call FUNC(attemptIntercept)}) exitWith {
+        if (
+            !isNil {_x getVariable QGVAR(modules)}
+            && {_x getVariable [QGVAR(enabled), true]} // Eden attribute
+            && {[_projectile, _x] call FUNC(attemptIntercept)}
+        ) exitWith {
             [_pfhId] call CBA_fnc_removePerFrameHandler;
         };
     } forEach lineIntersectsWith [_begin, _end];
