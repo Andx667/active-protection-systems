@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
-- Core - A missed intercept no longer sends a live round back along the rocket's path towards the shooter (#PR) by Andx
+- Core - A missed intercept no longer sends a live round back along the rocket's path towards the shooter (#10) by Andx
 
 ### Added
 
