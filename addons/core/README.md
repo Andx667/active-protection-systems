@@ -12,6 +12,7 @@ Moved from ITC Land Systems Redux (`itc_land_aps`).
 
 - `fnc_vehicleInit` (XEH `serverInit` on `AllVehicles`) reads the vehicle's `aps_type`, takes that type's modules from `aps_types`, lets the vehicle's `aps` class override any module property, fills in a default position and turret, and stores the result in the public `aps_core_modules` variable, one array per module (indices: `MODULE_*` in `script_component.hpp`).
 - `fnc_fired` (CBA `Fired` class event handler on `All`) follows every locally fired rocket and missile with a per-frame handler that raycasts 30 m ahead each frame; a hit on an object with `aps_core_modules` whose `aps_core_enabled` object variable (Eden attribute) is not false calls `fnc_attemptIntercept`.
+- `fnc_canIntercept` measures range, elevation and line of sight from the launcher, but the traverse angle from the vehicle's centre line at the launcher's height. Measured from the launcher, a projectile heading for the centre looks to be on the far side of each side launcher, so arcs that meet at the front (Drozd, Afghanit) left a blind wedge there.
 - Interception runs on the shooter's machine. A module that fires is applied locally right away and sent to the vehicle's owner as `aps_core_moduleFired`; the owner (`fnc_onModuleFired`) applies it to the shared state and publishes it, so several shooters do not overwrite each other.
 
 ## Files

@@ -20,3 +20,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Core - A missed intercept no longer sends a live round back along the rocket's path towards the shooter (#10) by Andx
+- Core - Rockets and missiles aimed straight at the front of the T-100 Varsuk and T-140 Angara (or the front and rear of the M2A1 Slammer) are no longer missed by both launchers by Andx
