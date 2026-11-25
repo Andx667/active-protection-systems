@@ -56,10 +56,12 @@ if (_apsPosition distance _projectilePosition > _range) exitWith { "out of range
 // reloading
 if (_lastFiredTime + _reloadTime > cba_missionTime) exitWith { "reloading" call _reject };
 
-private _vectToProjectile = _apsPosition vectorFromTo _projectilePosition;
-private _vectPolar = _vectToProjectile call CBA_fnc_vect2Polar;
+private _elevation = ((_apsPosition vectorFromTo _projectilePosition) call CBA_fnc_vect2Polar) # 2;
 
-_vectPolar params ["", "_azimuth", "_elevation"];
+// the arc is measured from the vehicle's centre line, not from the launcher: the arcs of side-by-side launchers
+// that meet at the front would otherwise leave a blind wedge there, widening as the projectile closes in
+private _arcOrigin = _vehicle modelToWorldWorld [0, 0, _position # 2];
+private _azimuth = ((_arcOrigin vectorFromTo _projectilePosition) call CBA_fnc_vect2Polar) # 1;
 
 private _mountDirection = (getDir _vehicle);
 if (_turret isNotEqualTo []) then {
