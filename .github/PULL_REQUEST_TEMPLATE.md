@@ -5,8 +5,7 @@
 
 ## Important
 
-<!-- TEMPLATE: relative links don't resolve in the PR-compose preview, so this needs
-     an absolute URL; replace active-protection-systems with the repo slug per SETUP.md -->
+- [ ] If the contribution affects [the documentation](https://github.com/Andx667/active-protection-systems/tree/main/docs), please include your changes in this pull request.
 - [ ] [Development Guidelines](https://github.com/Andx667/active-protection-systems/blob/main/.github/CONTRIBUTING.md) are read, understood and applied.
 - [ ] Title of this PR uses our standard template `Component - Add|Fix|Improve|Change|Remove {changes}`.
 

@@ -1,15 +1,21 @@
-/* TEMPLATE: set the brand color of the mod. Header text is fixed white, so light mode
-   needs a dark enough primary for contrast; dark mode gets the brighter accent. */
+/* Active Protection Systems brand color: rose, the Waffenfarbe of the Bundeswehr Panzertruppe.
+   It is a light color, so the header text is near black (8.6:1 on the header) instead of the fixed
+   white of the theme. Links get a dark rose on the light page (6.7:1 on white) and the bright rose
+   on the dark page (8.5:1 on the page background). */
 :root {
-  --md-primary-fg-color: #37474F;
-  --md-primary-fg-color--light: #78909C;
-  --md-primary-fg-color--dark: #263238;
+  --md-primary-fg-color: #E8A3B6;
+  --md-primary-fg-color--light: #F2C1CF;
+  --md-primary-fg-color--dark: #C9728C;
+  --md-primary-bg-color: #1A1A1A;
+  --md-primary-bg-color--light: #4A1F2B;
 }
 
 [data-md-color-scheme="default"] {
-  --md-accent-fg-color: #37474F;
+  --md-accent-fg-color: #8A2742;
+  --md-typeset-a-color: #A3324F;
 }
 
 [data-md-color-scheme="slate"] {
-  --md-accent-fg-color: #78909C;
+  --md-accent-fg-color: #F7C6D4;
+  --md-typeset-a-color: #F2A7BD;
 }
