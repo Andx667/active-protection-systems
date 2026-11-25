@@ -19,9 +19,6 @@
     <img src="https://img.shields.io/github/actions/workflow/status/Andx667/active-protection-systems/validate.yml?style=flat-square&label=Validate" alt="Validate">
 </p>
 
-> [!NOTE]
-> Not released. This repo keeps the APS code that was removed from ITC Land Systems Redux; there is no Workshop item or release yet.
-
 __Requires__ [CBA_A3](https://github.com/CBATeam/CBA_A3) and [ACE3](https://github.com/acemod/ACE3).
 
 __Active Protection Systems__ (APS) intercept incoming rockets and missiles before they hit the vehicle. The APS was part of [ITC Land Systems Redux](https://github.com/Andx667/ITC_Land_Systems) and is now its own mod.
